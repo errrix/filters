@@ -5,6 +5,7 @@
       <v-select v-model="currentCity"
                 label="name"
                 :options="cities"
+                :reduce="city => city.id"
                 placeholder="click to select"
       />
     </div>
@@ -33,7 +34,7 @@
       <span>{{minRange}}$</span>
       <span> - </span>
       <span>{{maxRange}}$</span>
-      <button type="submit" @click.prevent="sendFilters">filter</button>
+      <button type="submit" @click.prevent="filterSubmit">filter</button>
     </div>
   </form>
 </template>
@@ -71,8 +72,12 @@ export default {
   },
 
   mounted() {
+    if (Object.keys(this.$route.query).length) {
+      this.setParamsFromQuery();
+      this.sendFilters();
+    }
     this.ragePriceSlider = noUiSlider.create(document.getElementById('no-ui-slider'), {
-      start: [this.sliderProps.startMin, this.sliderProps.startMax],
+      start: [this.minRange || this.sliderProps.startMin, this.maxRange || this.sliderProps.startMax],
       connect: true,
       range: {
         min: this.sliderProps.min,
@@ -89,19 +94,52 @@ export default {
     ...mapActions([
       'sendFilters',
     ]),
+
+    filterSubmit() {
+      this.setUrlFromParams();
+      this.sendFilters();
+    },
+
     sendFilters() {
-      const city = this.currentCity ? this.currentCity.id : null;
       this.$store.dispatch('sendFilters', {
         minRange: this.minRange,
         maxRange: this.maxRange,
-        currentCity: city,
+        currentCity: this.currentCity,
         selectedCategories: this.selectedCategories,
       });
+    },
+
+    setUrlFromParams() {
+      const query = {};
+      if (this.minRange !== this.$store.getters.getMinRange) {
+        query.minrange = this.minRange;
+      }
+      if (this.maxRange !== this.$store.getters.getMaxRange) {
+        query.maxrange = this.maxRange;
+      }
+      if (this.currentCity) {
+        query.currentcity = this.currentCity;
+      }
+      if (this.selectedCategories.length) {
+        query.categories = this.selectedCategories.join('-');
+      }
+      this.$router.push({ path: this.$route.path, query });
+    },
+
+    setParamsFromQuery() {
+      if (this.$route.query.minrange) {
+        this.minRange = this.$route.query.minrange;
+      }
+      if (this.$route.query.maxrange) {
+        this.maxRange = this.$route.query.maxrange;
+      }
+      if (this.$route.query.categories) {
+        this.selectedCategories = this.$route.query.categories.split('-');
+      }
+      if (this.$route.query.currentcity) {
+        this.currentCity = +this.$route.query.currentcity;
+      }
     },
   },
 };
 </script>
-
-<style scoped>
-
-</style>

@@ -27,7 +27,7 @@ export default new Vuex.Store({
     // Получить имя категории по id
     getCategoryName: state => id => state.categories.find(elem => elem.id === id).name,
     // Получить имя города по id
-    getCityName: state => id => state.cities.find(elem => elem.id === id).name,
+    getCityName: state => id => state.cities.find(elem => elem.id === id),
     // Получить количество постов в каждой категории
     getItemsInCategory: (state, getters) => id => getters.getSelectedList.filter(elem => elem.category === id).length,
     // Получить минимальное значение шкалы
@@ -70,9 +70,9 @@ export default new Vuex.Store({
         const tempArray = [];
         state.filtersParams.selectedCategories.forEach((elem) => {
           if (filteredData.length) {
-            tempArray.push(...filteredData.filter(innerElem => innerElem.category === elem));
+            tempArray.push(...filteredData.filter(innerElem => innerElem.category === +elem));
           } else {
-            tempArray.push(...state.defaultList.filter(innerElem => innerElem.category === elem));
+            tempArray.push(...state.defaultList.filter(innerElem => innerElem.category === +elem));
           }
         });
         filteredData = tempArray;

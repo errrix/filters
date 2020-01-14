@@ -9,6 +9,7 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+    query: {},
   },
   // {
   //   path: '/about',
@@ -21,6 +22,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 

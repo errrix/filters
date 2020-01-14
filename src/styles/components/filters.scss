@@ -3,6 +3,11 @@
   margin-right: 60px;
   flex-shrink: 0;
 
+  @media screen and(max-width: 575px) {
+    margin-right: 0;
+    margin-bottom: 40px;
+  }
+
   &__block {
     margin-bottom: 60px;
 
@@ -33,18 +38,18 @@
           display: block;
           width: 18px;
           height: 18px;
-          border: 1px solid #d5d7d8;
+          border: 1px solid $checkbox-border;
           margin-right: 9px;
        }
 
         p {
-          color: #4c505b;
+          color: $lite-color;
           font-family: Raleway, sans-serif;
           font-size: 15px;
           font-weight: 400;
 
           span {
-            color: #a6a9af;
+            color: $text-color;
             font-family: "Open Sans", sans-serif;
             font-size: 15px;
             font-weight: 400;
@@ -68,7 +73,7 @@
     justify-content: space-between;
 
     span {
-      color: #33363e;
+      color: $title-text-color;
       font-family: Montserrat, sans-serif;
       font-size: 16px;
       font-weight: 700;
@@ -83,7 +88,7 @@
     button {
       width: 100px;
       height: 35px;
-      background-color: #1cb8ff;
+      background-color:$bg-hover-color;
       color: #ffffff;
       font-family: Montserrat, sans-serif;
       font-size: 14px;

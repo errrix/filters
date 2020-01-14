@@ -1,6 +1,17 @@
 .homepage {
   display: flex;
-  max-width: 100%;
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
   background: $homepage-bg-color;
   padding: 50px 100px 80px;
+  box-sizing: border-box;
+
+  @media screen and(max-width: 1367px) {
+    padding: 50px 40px 80px;
+  }
+
+  @media screen and(max-width: 575px) {
+    flex-direction: column;
+  }
 }

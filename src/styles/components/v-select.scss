@@ -1,5 +1,5 @@
 .v-select {
-  border: 1px solid #dee0e1;
+  border: 1px solid $select-border;
   height: 42px;
   padding: 0 16px;
 
@@ -23,7 +23,7 @@
   .vs__selected,
   .vs__search,
   .vs__dropdown-option {
-    color: #4c505b;
+    color: $lite-color;
     font-family: Raleway, sans-serif;
     font-size: 15px;
     font-weight: 400;

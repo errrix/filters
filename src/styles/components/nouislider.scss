@@ -1,20 +1,20 @@
 .noUi-target {
   height: 4px;
-  background: #d6d9e1;
+  background: $slider-bg-color;
   border: unset;
   border-radius: unset;
   box-shadow: unset;
 
   .noUi-connect {
-    background-color: #1cb8ff;
+    background-color:$bg-hover-color;
   }
 
   .noUi-handle {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 2px solid #1cb8ff;
-    background-color: #ffffff;
+    border: 2px solid $bg-hover-color;
+    background-color: $slider-button-fill;
     box-shadow: unset;
 
     &:before,
