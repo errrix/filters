@@ -1,0 +1,16 @@
+body {
+  background: $bg-color;
+}
+
+.basic-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}

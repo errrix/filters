@@ -1,0 +1,37 @@
+.v-select {
+  border: 1px solid #dee0e1;
+  height: 42px;
+  padding: 0 16px;
+
+  .vs__clear {
+    display: none;
+  }
+
+  .vs__dropdown-toggle {
+    border: none;
+    height: 100%;
+    padding: 0;
+  }
+
+  .vs__selected-options,
+  .vs__actions,
+  .vs__selected,
+  .vs__search {
+    padding: 0;
+  }
+
+  .vs__selected,
+  .vs__search,
+  .vs__dropdown-option {
+    color: #4c505b;
+    font-family: Raleway, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .vs__open-indicator {
+    width: 10px;
+    height: 10px;
+    background: url("~@/assets/select-arrow.svg") no-repeat center;
+  }
+}
