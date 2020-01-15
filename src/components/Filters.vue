@@ -1,5 +1,5 @@
 <template>
-  <form class="filters" >
+  <form class="filters">
     <div class="filters__block">
       <h3>city</h3>
       <v-select v-model="currentCity"
@@ -21,7 +21,12 @@
                  type="checkbox"
           >
           <div/>
-          <p>{{category.name}} <span>({{getItemsInCategory(category.id)}})</span></p>
+          <p>
+            {{category.name}}
+            <span>
+              ({{getItemsInCategory(category.id)}})
+            </span>
+          </p>
         </label>
       </div>
     </div>
@@ -31,10 +36,16 @@
       <div id="no-ui-slider"></div>
     </div>
     <div class="filters__button-price-block">
-      <span>{{minRange}}$</span>
-      <span> - </span>
-      <span>{{maxRange}}$</span>
-      <button type="submit" @click.prevent="filterSubmit">filter</button>
+      <div>
+        <span>{{minRange}}$</span>
+        <span>-</span>
+        <span>{{maxRange}}$</span>
+      </div>
+      <button type="submit"
+              @click.prevent="filterSubmit"
+      >
+        filter
+      </button>
     </div>
   </form>
 </template>

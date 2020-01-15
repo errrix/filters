@@ -5,6 +5,10 @@
   border-radius: unset;
   box-shadow: unset;
 
+  .noUi-base {
+    width: 225px;
+  }
+
   .noUi-connect {
     background-color:$bg-hover-color;
   }
