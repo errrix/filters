@@ -52,6 +52,7 @@ export default {
       maxRange: null,
       currentCity: null,
       selectedCategories: [],
+      // Дефолтные настройки слайдера
       sliderProps: {
         startMin: this.$store.getters.getMinRange || 0,
         startMax: this.$store.getters.getMaxRange || 100,
@@ -63,6 +64,7 @@ export default {
   },
 
   computed: {
+    // Не стал делать геттеры для значений, которые не нужно модифицировать
     ...mapState([
       'categories', 'cities',
     ]),
@@ -72,10 +74,13 @@ export default {
   },
 
   mounted() {
+    // Если квери запроса не пустой объект, забираем из него значения и диспачим экшн
     if (Object.keys(this.$route.query).length) {
       this.setParamsFromQuery();
       this.sendFilters();
     }
+
+    // Настройки слайдера
     this.ragePriceSlider = noUiSlider.create(document.getElementById('no-ui-slider'), {
       start: [this.minRange || this.sliderProps.startMin, this.maxRange || this.sliderProps.startMax],
       connect: true,
@@ -85,6 +90,7 @@ export default {
       },
     });
 
+    // Привязка слайдера к стейту компонента
     this.ragePriceSlider.on('update', (values, handle) => {
       this[handle ? 'maxRange' : 'minRange'] = parseInt(values[handle], 0);
     });
@@ -100,6 +106,7 @@ export default {
       this.sendFilters();
     },
 
+    // Передаем в экшн объект с параметрами фильтров
     sendFilters() {
       this.$store.dispatch('sendFilters', {
         minRange: this.minRange,
@@ -109,6 +116,7 @@ export default {
       });
     },
 
+    // Пишем в квери данные из стейта при сабмите формы фильтров
     setUrlFromParams() {
       const query = {};
       if (this.minRange !== this.$store.getters.getMinRange) {
@@ -126,6 +134,7 @@ export default {
       this.$router.push({ path: this.$route.path, query });
     },
 
+    // Устанавливаем значения стейта из квери параметров
     setParamsFromQuery() {
       if (this.$route.query.minrange) {
         this.minRange = this.$route.query.minrange;

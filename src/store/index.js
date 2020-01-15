@@ -26,7 +26,7 @@ export default new Vuex.Store({
   getters: {
     // Получить имя категории по id
     getCategoryName: state => id => state.categories.find(elem => elem.id === id).name,
-    // Получить имя города по id
+    // Получить город по id
     getCityName: state => id => state.cities.find(elem => elem.id === id),
     // Получить количество постов в каждой категории
     getItemsInCategory: (state, getters) => id => getters.getSelectedList.filter(elem => elem.category === id).length,
@@ -34,7 +34,8 @@ export default new Vuex.Store({
     getMinRange: state => state.defaultList.reduce((acc, elem) => (acc < elem.price ? acc : elem.price), +Infinity),
     // Получить максимальное значение шкалы
     getMaxRange: state => state.defaultList.reduce((acc, elem) => (acc > elem.price ? acc : elem.price), -Infinity),
-    // это очень большой и плохо читаемый кусок кода и мне за него стыдно(
+    // это очень большой и плохо читаемый кусок кода,
+    // но, как мне кажется, подобная выборка должна осуществлятся с базы на стороне бекенда
     getSelectedList: (state) => {
       if (!state.filtersParams) {
         return state.defaultList;

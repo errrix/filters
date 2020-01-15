@@ -7,6 +7,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
+// дополнительные настройки для кастомного селекта
 vSelect.props.components.default = () => ({
   OpenIndicator: {
     render: createElement => createElement('span'),
